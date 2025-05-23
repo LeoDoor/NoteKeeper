@@ -43,3 +43,8 @@ npm start
 
 # Build for distribution
 npm run dist
+```
+## Credits
+
+### Icons
+- Application icon: [Planner free icon] from [Flaticon]([https://www.flaticon.com/free-icon/icon-name_123456](https://www.flaticon.com/free-icon/planner_5894393?term=notebook&page=2&position=86&origin=search&related_id=5894393))
