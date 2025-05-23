@@ -1,0 +1,413 @@
+/* ===================================
+   NATURE INSPIRED NOTE-TAKING APP
+   ================================= */
+
+/* Reset & Base Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f7f2;
+    color: #3a3a3a;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ===================================
+   LAYOUT STRUCTURE
+   ================================= */
+
+#app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* ===================================
+   HEADER
+   ================================= */
+
+header {
+    background-color: #5d7052;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+/* ===================================
+   SIDEBAR (NOTES LIST)
+   ================================= */
+
+#notes-list {
+    width: 250px;
+    background-color: #f1f0e9;
+    padding: 1rem;
+    overflow-y: auto;
+    border-right: 1px solid #e5e3d7;
+}
+
+#notes-list h3 {
+    margin-top: 0;
+    color: #5d7052;
+    font-weight: 500;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e3d7;
+}
+
+/* Note Items */
+.note-item {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    background-color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+
+.note-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+}
+
+.note-item.selected {
+    background-color: #e8f0e3;
+    box-shadow: 0 1px 3px rgba(93, 112, 82, 0.2);
+}
+
+.note-item.selected:hover {
+    background-color: #dde8d6;
+}
+
+.note-title {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: #3a3a3a;
+}
+
+.note-date {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* ===================================
+   MAIN EDITOR AREA
+   ================================= */
+
+#note-editor {
+    flex: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+/* Input Fields */
+#note-title {
+    padding: 0.75rem;
+    font-size: 1.4rem;
+    border: none;
+    border-bottom: 1px solid #e5e3d7;
+    border-radius: 0;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: transparent;
+    width: 100%;
+}
+
+#note-content {
+    flex: 1;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0;
+    resize: none;
+    font-family: inherit;
+    line-height: 1.6;
+    background-color: transparent;
+    width: 100%;
+}
+
+/* Input Focus States */
+#note-title:focus, 
+#note-content:focus {
+    outline: none;
+    border-color: #869476;
+}
+
+/* Force inputs to be interactive */
+input, 
+textarea {
+    pointer-events: auto !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+}
+
+/* ===================================
+   BUTTONS
+   ================================= */
+
+/* Button Container */
+#note-editor-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+/* Base Button Styles */
+button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    font-weight: 500;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+/* New Note Button (Header) */
+#new-note {
+    background-color: #6b8f69;
+    padding: 0.5rem 1rem;
+}
+
+#new-note:hover {
+    background-color: #5d7d5a;
+}
+
+/* Save Button States */
+#save-note {
+    background-color: #6b8f69;
+    margin-left: auto;
+}
+
+#save-note:hover:not(:disabled) {
+    background-color: #5d7d5a;
+}
+
+#save-note:disabled {
+    background-color: #666666;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#save-note:disabled:hover {
+    transform: none;
+}
+
+/* Delete Button */
+#delete-note {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c87c68;
+    font-size: 1.2rem;
+    margin-right: auto;
+}
+
+#delete-note:hover {
+    background-color: #b56b59;
+}
+
+/* ===================================
+   SCROLLBAR STYLING
+   ================================= */
+
+#notes-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+#notes-list::-webkit-scrollbar-track {
+    background: #f1f0e9;
+}
+
+#notes-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+#notes-list::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}
+
+#note-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+#note-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#note-content::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+#note-content::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   ================================= */
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    #notes-list {
+        width: 100%;
+        height: 200px;
+        border-right: none;
+        border-bottom: 1px solid #e5e3d7;
+    }
+    
+    #note-editor {
+        padding: 1rem;
+    }
+    
+    #note-title {
+        font-size: 1.2rem;
+    }
+}
+
+/* ===================================
+   UTILITY CLASSES
+   ================================= */
+
+.hidden {
+    display: none !important;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ===================================
+   ANIMATION CLASSES
+   ================================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* ===================================
+   PRINT STYLES
+   ================================= */
+
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+    
+    header,
+    #notes-list,
+    button {
+        display: none;
+    }
+    
+    #note-editor {
+        padding: 0;
+    }
+    
+    #note-title,
+    #note-content {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px 0;
+    }
+}
+
+/* Notes Header with Sorting */
+.notes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e3d7;
+}
+
+.notes-header h3 {
+    margin: 0;
+    color: #5d7052;
+    font-weight: 500;
+}
+
+#sort-options {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #e5e3d7;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 0.8rem;
+    color: #5d7052;
+    cursor: pointer;
+}
+
+#sort-options:focus {
+    outline: none;
+    border-color: #869476;
+}
+
+/* Temporary note styling */
+.note-item.temp-note {
+    background-color: #f9f9f9;
+    border: 1px dashed #c1c1c1;
+    font-style: italic;
+}
+
+.note-item.temp-note .note-title {
+    color: #888;
+}

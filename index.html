@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteKeeper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>My Notes</h1>
+            <button id="new-note">New Note</button>
+        </header>
+        
+        <div class="container">
+            <aside id="notes-list">
+				<div class="notes-header">
+					<h3>Your Notes</h3>
+					<select id="sort-options">
+						<option value="date-desc">Newest First</option>
+						<option value="date-asc">Oldest First</option>
+						<option value="title-asc">Title A-Z</option>
+						<option value="title-desc">Title Z-A</option>
+					</select>
+				</div>
+				<!-- Notes will be listed here -->
+			</aside>
+            
+            <main id="note-editor">
+                <input type="text" id="note-title" placeholder="Note title...">
+                <textarea id="note-content" placeholder="Write your note here..."></textarea>
+                <div id="note-editor-buttons">
+                    <!-- Buttons will be dynamically added here -->
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <script src="renderer.js"></script>
+</body>
+</html>
